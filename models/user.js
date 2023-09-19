@@ -6,11 +6,22 @@ module.exports = (db) => {
       type: DataTypes.STRING,
       allowNull: false,
       unique: true,
-      primaryKey: true,
     },
     password: {
       type: DataTypes.STRING,
       allowNull: false,
+    },
+    isAdmin: {
+      type: DataTypes.BOOLEAN,
+      allowNull: true,
+    },
+    firstName: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
+    lastName: {
+      type: DataTypes.STRING,
+      allowNull: true,
     },
   });
 
