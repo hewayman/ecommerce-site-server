@@ -47,10 +47,10 @@ router.delete('/:id', validateSession, async (req, res) => {
   }
 });
 
-router.get('/item/:storeitemId', (req, res) => {
+router.get('/item/:itemId', (req, res) => {
   Review.findAll({
     where: {
-      storeitemId: req.params.storeitemId,
+      itemId: req.params.itemId,
     },
   })
     .then((review) => res.status(200).json(review))
