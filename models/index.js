@@ -1,18 +1,12 @@
 const { Sequelize } = require('sequelize');
 
+const db = {};
+
 const sequelize = new Sequelize('new-ecommerce-store', 'postgres', 'password', {
   host: 'localhost',
   dialect: 'postgres',
 });
 
-// const testDbConnection = async () => {
-//   try {
-//     await database.authenticate();
-//     console.log("Connected to database");
-//   } catch (error) {
-//     console.error("Unable to connect to database", error);
-//   }
-// };
 sequelize.authenticate().then(
   () => {
     console.log('Connected to db');
@@ -22,13 +16,11 @@ sequelize.authenticate().then(
   }
 );
 
-const database = {};
+db.sequelize = sequelize;
+db.Sequelize = Sequelize;
 
-database.Sequelize = Sequelize;
-database.sequelize = sequelize;
+db.users = require('./user')(sequelize, Sequelize);
+db.listings = require('./listing')(sequelize, Sequelize);
+db.reviews = require('./review')(sequelize, Sequelize);
 
-database.users = require('./user')(sequelize, Sequelize);
-
-// module.exports = { database, testDbConnection };
-
-module.exports = database;
+module.exports = db;

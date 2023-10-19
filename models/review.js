@@ -6,24 +6,29 @@ module.exports = (db) => {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    review: {
+    reviewDetails: {
       type: DataTypes.STRING,
+      allowNull: false,
     },
     date: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    userFirstName: {
+    itemId: {
       type: DataTypes.STRING,
       allowNull: false,
+    },
+    userId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    userFirstName: {
+      type: DataTypes.STRING,
+      allowNull: true,
     },
     userLastName: {
       type: DataTypes.STRING,
-      allowNull: false,
-    },
-    itemID: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
+      allowNull: true,
     },
   });
 };
