@@ -5,6 +5,7 @@ const port = 3000;
 
 const database = require('./models/index');
 const user = require('./controllers/user_controller');
+const reviewController = require('./controllers/review_controller');
 
 database.sequelize.sync();
 
@@ -14,6 +15,7 @@ app.use(express.json());
 // const site = require('./controllers/site_controller');
 
 app.use('/user', user);
-app.use(require('./middleware/validate-session'));
+app.use('/review', reviewController);
+app.use(require('./middleware/validate_session'));
 
 app.listen(port, () => console.log(`App is listening on port ${port}`));
