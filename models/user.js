@@ -1,7 +1,7 @@
 const { DataTypes } = require('sequelize');
 
 module.exports = (db) => {
-  const User = db.define('user', {
+  return db.define('user', {
     email: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -24,6 +24,4 @@ module.exports = (db) => {
       allowNull: true,
     },
   });
-
-  return User;
 };
