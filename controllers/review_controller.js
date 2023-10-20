@@ -21,7 +21,7 @@ router.post('/create', validateSession, (req, res) => {
   };
 
   Review.create(reviewData)
-    .then((review) => res.status(200).json(review))
+    .then((review) => res.status(200).json({ review }))
     .catch((err) => res.status(500).json({ error: 'Review not created' }));
 });
 
@@ -31,7 +31,7 @@ router.put('/:id', validateSession, (req, res) => {
       id: req.params.id,
     },
   })
-    .then((review) => res.status(200).json(review))
+    .then((review) => res.status(200).json({ review }))
     .catch((err) => res.status(500).json({ error: 'Update not successful' }));
 });
 
@@ -53,7 +53,7 @@ router.get('/item/:itemId', (req, res) => {
       itemId: req.params.itemId,
     },
   })
-    .then((review) => res.status(200).json(review))
+    .then((review) => res.status(200).json({ review }))
     .catch((err) => res.status(500).json({ error: 'Reviews not found' }));
 });
 
