@@ -8,7 +8,7 @@ router.post('/register', (req, res) => {
   const userData = {
     email: req.body.email,
     password: bcrypt.hashSync(req.body.password),
-    isAdmin: req.body.isAdmin,
+    role: 'user',
     firstName: req.body.firstName,
     lastName: req.body.lastName,
   };
@@ -62,7 +62,7 @@ router.post('/admin', (req, res) => {
   User.create({
     email: process.env.ADMIN_EMAIL,
     password: bcrypt.hashSync(process.env.ADMIN_PASS, 12),
-    isAdmin: true,
+    role: 'admin',
   })
     .then((user) => {
       const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET, {
@@ -78,6 +78,14 @@ router.post('/admin', (req, res) => {
     .catch((err) =>
       res.status(500).json({ error: 'Admin account not created' })
     );
+});
+
+router.get('/:id', (req, res) => {
+  User.findOne({
+    where: { id: req.params.id },
+  })
+    .then((user) => res.status(200).json({ user }))
+    .catch((err) => res.status(500).json({ error: 'Cannot display users' }));
 });
 
 module.exports = router;
