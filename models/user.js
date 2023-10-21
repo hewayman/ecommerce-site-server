@@ -11,8 +11,8 @@ module.exports = (db) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    isAdmin: {
-      type: DataTypes.BOOLEAN,
+    role: {
+      type: DataTypes.STRING,
       allowNull: true,
     },
     firstName: {
